@@ -44,7 +44,7 @@ namespace POOI_T2_DoriaBerrospi.Controllers
                     ViewBag.mensaje = "El DNI se encuentra registrado";
                     return View(alumno);
                 }
-                
+
                 temporal.Add(alumno);
                 jAlumno = JsonConvert.SerializeObject(temporal);
                 ViewBag.mensaje = "Guardado de Manera Exitosa";
@@ -62,7 +62,7 @@ namespace POOI_T2_DoriaBerrospi.Controllers
             try
             {
                 List<Alumno> temporal = JsonConvert.DeserializeObject<List<Alumno>>(jAlumno);
-                Alumno alumno = temporal.Find(a=> a.dni == dni);
+                Alumno alumno = temporal.Find(a => a.dni == dni);
 
                 if (alumno != null)
                 {
@@ -70,7 +70,7 @@ namespace POOI_T2_DoriaBerrospi.Controllers
                     jAlumno = JsonConvert.SerializeObject(temporal);
                 }
             }
-            catch(JsonException ex)
+            catch (JsonException ex)
             {
                 ViewBag.mensaje = ex.Message;
             }
@@ -83,12 +83,18 @@ namespace POOI_T2_DoriaBerrospi.Controllers
             {
                 List<Alumno> temporal = JsonConvert.DeserializeObject<List<Alumno>>(jAlumno);
                 Alumno alumno = temporal.Find(a => a.dni == dni);
+
+                if (alumno == null)
+                {
+                    return RedirectToAction("Index");
+                }
+
                 return View(alumno);
             }
             catch (JsonException ex)
             {
                 ViewBag.mensaje = ex.Message;
-                return View();
+                return View(new Alumno());
             }
         }
 
@@ -98,12 +104,16 @@ namespace POOI_T2_DoriaBerrospi.Controllers
             {
                 List<Alumno> temporal = JsonConvert.DeserializeObject<List<Alumno>>(jAlumno);
                 Alumno alumnoEncontrado = temporal.Find(a => a.dni == dni);
+                if (alumnoEncontrado == null)
+                {
+                    return RedirectToAction("Index");
+                }
                 return View(alumnoEncontrado);
             }
             catch (Exception ex)
             {
                 ViewBag.mensaje = ex.Message;
-                return View();
+                return View(new Alumno());
             }
         }
 

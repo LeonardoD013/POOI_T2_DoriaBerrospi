@@ -29,29 +29,30 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.dni)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.nombres)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.apellidos)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.carrera)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ciclo)
-        </td>
-        <td>
-            @Html.ActionLink("Actualizar", "Actualizar", new { dni=item.dni  }) |
-            @Html.ActionLink("Detalles", "Detalles", new { dni=item.dni }) |
-            @Html.ActionLink("Eliminar", "Eliminar", new { dni=item.dni })
-        </td>
-    </tr>
-}
-    @ViewBag.mensaje
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.dni)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombres)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.apellidos)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.carrera)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ciclo)
+            </td>
+            <td>
+                @Html.ActionLink("Actualizar", "Actualizar", new { dni = item.dni }) |
+                @Html.ActionLink("Detalles", "Detalles", new { dni = item.dni }) |
+                @Html.ActionLink("Eliminar", "Eliminar", new { dni = item.dni })
+            </td>
+        </tr>
+        @ViewBag.mensaje
+    }
 </table>
